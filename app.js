@@ -30,9 +30,12 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
+// Handlebars helpers
+const { formatDate } = require('./helpers/hbs')
+
 // Handlebars
 app.engine('.hbs', exphbs.engine(
-    {defaultLayout: 'main', extname: '.hbs'}))
+    {helpers: {formatDate}, defaultLayout: 'main', extname: '.hbs'}))
 app.set('view engine', '.hbs')
 
 // Sessions
